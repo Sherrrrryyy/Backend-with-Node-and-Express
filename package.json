@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "we will create task app using nodejs express mongodb",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
