@@ -1,3 +1,18 @@
+const tasks = [
+    {
+        id: 1,
+        title: "This is one"
+    },
+    {
+        id: 2,
+        title: "This is two"
+    },
+    {
+        id: 3,
+        title: "This is three"
+    },
+]
+
 
 
 import express from 'express';
@@ -7,7 +22,7 @@ const PORT = 4000;
 
 app.get('/', (req, res) => {
     console.log(req);
-    res.send("Hello world of the backend")
+    res.status(200).send(tasks)
 })
 
 app.post('/', (req, res) => {
