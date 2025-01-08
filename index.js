@@ -20,6 +20,15 @@ const app = express();
 const PORT = 4000;
 
 
+// application-level middleware
+
+function middleware(res,req, next){
+        console.log("Middleware=>",Date.now());
+        next()
+}
+
+app.use(middleware)
+
 app.get('/', (req, res) => {
     console.log(req);
     res.status(200).send(tasks)
