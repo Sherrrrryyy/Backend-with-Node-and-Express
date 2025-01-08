@@ -22,18 +22,18 @@ const PORT = 4000;
 
 
 // application-level middleware
-
 function middleware(req, res, next) {
     req.requestBy = "Shaheer Khan";
-    // next()
+    next()
 }
-
 // app.use(middleware)
 app.use(morgan('tiny'))
 
+
+// Router-level middleware
 app.get('/',middleware, (req, res) => {
     // console.log(req);
-    console.log("request by=>", res.requestBy);
+    console.log("request by=>", req.requestBy);
     res.status(200).send(tasks)
 })
 
