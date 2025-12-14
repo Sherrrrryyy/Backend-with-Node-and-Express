@@ -1,55 +1,53 @@
-const tasks = [
-    {
-        id: 1,
-        title: "This is one"
-    },
-    {
-        id: 2,
-        title: "This is two"
-    },
-    {
-        id: 3,
-        title: "This is three"
-    },
-]
-
-
-
-import express from 'express';
-import morgan from 'morgan';
+// import catMe from 'cat-me';
+import express from "express";
+import morgan from "morgan";
 const app = express();
 const PORT = 4000;
 
+app.set("view engine", "ejs");
 
-// application-level middleware
-function middleware(req, res, next) {
-    req.requestBy = "Shaheer Khan";
-    next()
-}
-// app.use(middleware)
-app.use(morgan('tiny'))
+//3rd party middleware
+app.use(morgan("dev"));
 
+//custom middleware
 
-// Router-level middleware
-app.get('/',middleware, (req, res) => {
-    // console.log(req);
-    console.log("request by=>", req.requestBy);
-    res.status(200).send(tasks)
-})
+// app.use((req,res,next)=>{
 
-app.post('/', (req, res) => {
-    // console.log(req);
-    res.send("Post request has been called")
-})
+//     const a = 2;
+//     const b = 3;
+//     console.log(a + b);
 
-app.put('/', (req, res) => {
-    // console.log(req);
-    res.send("Put request has been called")
-})
+//     return next()
+// })
 
-app.delete('/', (req, res) => {
-    // console.log(req);
-    res.send("Delete request has been called")
-})
+//render with index.ejs view engine
+app.get(
+  "/",
+  (req, res, next) => {
+    const a = 10;
+    const b = 5;
+    console.log("Sum is: " + (a + b));
+    next();
+  },
+  (req, res) => {
+    res.render("index");
+  }
+);
+
+//routes
+
+// app.get('/',(req,res)=>{
+// res.send("This is home page")
+// })
+
+app.get("/about", (req, res) => {
+  res.send("this is about page");
+});
+
+app.get("/profile", (req, res) => {
+  res.send("Tis is profile page");
+});
 
 app.listen(PORT, () => console.log("Server is running on PORT" + PORT));
+
+// console.log(catMe());
