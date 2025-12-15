@@ -1,10 +1,10 @@
 // import catMe from 'cat-me';
 import express from "express";
-import morgan from "morgan";
+import morgan from "morgan"; //middleware
 const app = express();
 const PORT = 4000;
 
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); //isplay html
 
 //3rd party middleware
 app.use(morgan("dev"));
@@ -20,19 +20,38 @@ app.use(morgan("dev"));
 //     return next()
 // })
 
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
 //render with index.ejs view engine
-app.get(
-  "/",
-  (req, res, next) => {
-    const a = 10;
-    const b = 5;
-    console.log("Sum is: " + (a + b));
-    next();
-  },
-  (req, res) => {
-    res.render("index");
-  }
-);
+// app.get(
+//   "/",
+//   (req, res, next) => {
+//     const a = 10;
+//     const b = 5;
+//     console.log("Sum is: " + (a + b));
+//     next();
+//   },
+//   (req, res) => {
+//     res.render("index");
+//   }
+// );
+
+// app.get(
+//   "/",
+//   (req, res, next) => {
+//     const user = false;
+//     if (user) {
+//       next();
+//     } else {
+//       res.send("Please login to continue");
+//     }
+//   },
+//   (req, res) => {
+//     res.render("index");
+//   }
+// );
 
 //routes
 
