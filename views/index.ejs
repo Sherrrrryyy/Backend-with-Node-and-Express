@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="/index.css">
 <body>
     <!-- <h1>Hello World</h1>
     <small>Hello World</small> -->
-
-
-<form action="">
-    <input type="text" placeholder="Enter your name">
-    <input type="email" placeholder="Enter your email">
-    <input type="password" placeholder="Enter your passwor">
+<!--Also have to mention here the method like GET and POST-->
+<form action="/get-user-data" method="post">
+    <input type="text" placeholder="Enter your name" name="username">
+    <input type="email" placeholder="Enter your email" name="userEmail">
+    <input type="password" placeholder="Enter your passwor" name="userPass">
     <button>Sumbit Form</button>
 
 </form>

@@ -6,11 +6,13 @@ const PORT = 4000;
 
 app.set("view engine", "ejs"); //isplay html
 
-//3rd party middleware
-app.use(morgan("dev"));
+
+app.use(morgan("dev"));//3rd party middleware
+app.use(express.json())// built in  middleware to parse json data
+app.use(express.urlencoded({extended:true})) // built in middleware to parse url encoded data
+app.use(express.static("public"))// built in middleware to serve static files like css , images ,etc
 
 //custom middleware
-
 // app.use((req,res,next)=>{
 
 //     const a = 2;
@@ -66,6 +68,19 @@ app.get("/about", (req, res) => {
 app.get("/profile", (req, res) => {
   res.send("Tis is profile page");
 });
+
+//use for sending data from server to frontend
+// app.get('/get-user-data',(req,res)=>{
+// console.log(req.query);
+// res.send("data has been received")
+// })
+
+//use for sending data from frontend to backend 
+// In the post method data will not coming in req.query instead it will come in req.body
+app.post('/get-user-data',(req,res)=>{
+console.log(req.body);
+res.send("data has been received")
+})
 
 app.listen(PORT, () => console.log("Server is running on PORT" + PORT));
 
