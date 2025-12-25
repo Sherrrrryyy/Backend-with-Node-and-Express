@@ -2,7 +2,6 @@
 import express from "express";
 import morgan from "morgan"; //middleware
 import connection from "./config/db.js";
-import userModdel from "./models/user.js";
 import userModel from "./models/user.js";
 
 const app = express();
@@ -84,6 +83,7 @@ app.post("/get-user-data", (req, res) => {
 // res.send("data has been received")
 // })
 
+// Create operation
 // to show the register page
 app.get("/register", (req, res) => {
   res.render("register");
