@@ -118,6 +118,7 @@ app.get("/get-users", (req, res) => {
     });
 });
 
+// Update operation
 // to update user we use findOneAndUpdate method
 app.get("/update-user", async (req, res) => {
   await userModel.findOneAndUpdate(
@@ -130,6 +131,15 @@ app.get("/update-user", async (req, res) => {
   );
 
   res.send("user updated");
+});
+
+// Delete operation
+// o delete the user we use findOneAndDelete method
+app.get("/delete-user", async (req, res) => {
+  await userModel.findOneAndDelete({
+    username: "a",
+  });
+  res.send("user deleted");
 });
 
 app.listen(PORT, () => {
