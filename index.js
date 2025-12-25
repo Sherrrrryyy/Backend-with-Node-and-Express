@@ -107,10 +107,29 @@ app.post("/register", async (req, res) => {
 
 // Read operation with the help of find method we can read our data in the rowser
 // usermodel used with every operation related to the user
+// In the find method we also put condition to get the speciffic user if we didn't put any condition find print all users
 app.get("/get-users", (req, res) => {
-  userModel.find().then((users) => {
-    res.send(users);
-  });
+  userModel
+    .find({
+      username: "c",
+    })
+    .then((users) => {
+      res.send(users);
+    });
+});
+
+// to update user we use findOneAndUpdate method
+app.get("/update-user", async (req, res) => {
+  await userModel.findOneAndUpdate(
+    {
+      username: "c",
+    },
+    {
+      email: "z@z.com",
+    }
+  );
+
+  res.send("user updated");
 });
 
 app.listen(PORT, () => {
