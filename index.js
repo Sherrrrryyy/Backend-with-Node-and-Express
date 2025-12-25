@@ -1,12 +1,14 @@
 // import catMe from 'cat-me';
 import express from "express";
-import morgan from "morgan"; //middleware
+import morgan from "morgan";//middleware
+import connection from './config/db.js'
+import userModdel from './models/user.js'
+
+
 const app = express();
 const PORT = 4000;
 
 app.set("view engine", "ejs"); //isplay html
-
-
 app.use(morgan("dev"));//3rd party middleware
 app.use(express.json())// built in  middleware to parse json data
 app.use(express.urlencoded({extended:true})) // built in middleware to parse url encoded data
@@ -82,6 +84,6 @@ console.log(req.body);
 res.send("data has been received")
 })
 
-app.listen(PORT, () => console.log("Server is running on PORT" + PORT));
-
-// console.log(catMe());
+app.listen(PORT, ()=>{
+    console.log(`Server is running on http://localhost:${PORT}`);
+})
