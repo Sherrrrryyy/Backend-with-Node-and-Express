@@ -71,6 +71,13 @@ app.get("/profile", (req, res) => {
   res.send("Tis is profile page");
 });
 
+//use for sending data from frontend to backend
+// In the post method data will not coming in req.query instead it will come in req.body
+app.post("/get-user-data", (req, res) => {
+  console.log(req.body);
+  res.send("data has been received");
+});
+
 //use for sending data from server to frontend
 // app.get('/get-user-data',(req,res)=>{
 // console.log(req.query);
@@ -84,21 +91,26 @@ app.get("/register", (req, res) => {
 
 // to get data from the register page
 app.post("/register", async (req, res) => {
+  //data destructure krengy
   const { username, email, userPass } = req.body;
+
+  //naya user create krengy model ki help se
   const newUser = await userModel.create({
     username: username,
     email: email,
     password: userPass,
   });
 
+  // isse ham rowser pe data read kr skte hai
   res.send(newUser);
 });
 
-//use for sending data from frontend to backend
-// In the post method data will not coming in req.query instead it will come in req.body
-app.post("/get-user-data", (req, res) => {
-  console.log(req.body);
-  res.send("data has been received");
+// Read operation with the help of find method we can read our data in the rowser
+// usermodel used with every operation related to the user
+app.get("/get-users", (req, res) => {
+  userModel.find().then((users) => {
+    res.send(users);
+  });
 });
 
 app.listen(PORT, () => {
