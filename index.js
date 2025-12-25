@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan"; //middleware
 import connection from "./config/db.js";
 import userModdel from "./models/user.js";
+import userModel from "./models/user.js";
 
 const app = express();
 const PORT = 4000;
@@ -82,9 +83,15 @@ app.get("/register", (req, res) => {
 });
 
 // to get data from the register page
-app.post("/register", (req, res) => {
-  console.log(req.body);
-  res.send("user registered successfully");
+app.post("/register", async (req, res) => {
+  const { username, email, userPass } = req.body;
+  const newUser = await userModel.create({
+    username: username,
+    email: email,
+    password: userPass,
+  });
+
+  res.send(newUser);
 });
 
 //use for sending data from frontend to backend
